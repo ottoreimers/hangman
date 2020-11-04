@@ -1,6 +1,6 @@
 // Globala variabler
 // debugger;
-const wordList = ["bag", "fire", "plant", "moscow", "hammarby"]; // Array: med spelets alla ord
+const wordList = ["BAG", "FIRE", "PLANT", "MOSCOW", "HAMMARBY"]; // Array: med spelets alla ord
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0; // Number: håller antalet gissningar som gjorts
@@ -30,15 +30,18 @@ function startGame() {
 
   }
   function makeTextAppear(letter) {
+    // debugger;
     let containers = document.querySelector("#letterContainers");
     let letterArray = containers.querySelectorAll("li");
-    let keyPress = letter.target.value.toLowerCase();
+    let keyPress = letter.target.value.toUpperCase();
     let indexNum = selectedWord.indexOf(keyPress);
 
     if (indexNum != -1) {
       letterArray[indexNum].textContent = keyPress;
+      document.getElementsByClassName('win').innerHTML = 'Congratulations! You won!';
     } else {
       letter.target.style.backgroundColor = "red";
+      document.getElementsByClassName('lose').innerHTML = 'Sorry! GAME OVER!';
 
     }
   }
