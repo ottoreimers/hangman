@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="hangman.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <title>Hangman</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
            För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.
         </p>
     </article> -->
-    <button type="button" id="startGameBtn">Start game</button>
+    <button type="button" id="startGameBtn">Start</button>
     <button type="button" id="restartGameBtn">Restart</button>
     <section id="gameBoard">
         <ul id="letterButtons">
@@ -57,11 +58,11 @@
             </ul>
         </section>
 
-        <img id="hangman" src="images/h0.png" alt="hangman">
+        <!-- <img id="hangman" src="images/h0.png" alt="hangman"> -->
     </section>
     <section id="message">
-      <h1 class="win">Congratulations! You won!</h1>
-      <h1 class="lose">Sorry! GAME OVER!</h1>
+      <h1 class="win"></h1>
+      <h1 class="lose"></h1>
         <!-- This is where messages should appear -->
     </section>
 </main>
