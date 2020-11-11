@@ -1,25 +1,44 @@
 @charset "UTF-8";
 
 body {
-  background-color: black;
+  background-color: rgb(0, 57, 83);
 }
 
-#startGameBtn, #restartGameBtn {
+#startGameBtn {
   text-align: center;
+  margin: 10px;
   border: rgb(43, 255, 0) solid 8px;
   background-color: black;
   box-shadow: rgb(25, 146, 0) 5px 5px;
   color: rgb(43, 255, 0);
   font-size: 50px;
   font-family: 'Press Start 2P', cursive;
-  margin: 10px;
   margin-left: 50px;
   padding: 10px;
   display: inline-flex;
   flex-wrap: wrap;
+}
 
-  /* display: flex;
-  align-items: center; */
+#restartGameBtn {
+  text-align: center;
+  float: right;
+  margin: 10px;
+  border: rgb(43, 255, 0) solid 8px;
+  background-color: black;
+  box-shadow: rgb(25, 146, 0) 5px 5px;
+  color: rgb(43, 255, 0);
+  font-size: 50px;
+  font-family: 'Press Start 2P', cursive;
+  margin-left: 50px;
+  padding: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+#gameBoard {
+  margin-left: 150px;
+  margin-right: 150px;
+  float: left;
 }
 
 
@@ -28,6 +47,10 @@ body {
   list-style: none;
   display:flex;
   flex-wrap: wrap;
+}
+
+#letterBoxes {
+  list-style: armenian;
 }
 
 .btn {
@@ -41,21 +64,22 @@ body {
   margin: 10px;
 }
 
-input {
-  border: none;
-  border-bottom: 2px solid white;
-  margin:10px;
-  width: 20px;
-  background-color: white;
-}
-
- #letterContainers {
-   list-style: none;
-   font-family: 'Press Start 2P', cursive;
+.listItem {
+  font-family: 'Press Start 2P', cursive;
   font-size: 50px;
-  color: white;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  margin-top: 100px;
-
 }
+
+.listBorder {
+  border-bottom: black solid 5px;
+  margin: 10px;
+  width: 30px;
+}
+
+#message {
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Press Start 2P', cursive;
+}
+
