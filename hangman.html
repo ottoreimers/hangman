@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="hangman.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="hack.js" defer></script>
   <title>Hangman</title>
 </head>
 <body>
@@ -53,22 +54,23 @@
         </ul>
         <section id="letterBoxes">
             <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
-            <ul id="letterContainers">
-
+            <ul>
             </ul>
         </section>
 
-        <!-- <img id="hangman" src="images/h0.png" alt="hangman"> -->
+
     </section>
     <section id="message">
-      <h1 class="win"></h1>
-      <h1 class="lose"></h1>
+        <h1 class="win"></h1>
+        <h1 class="lose"></h1>
+        <img id="hangman" src="Img/h0.png" alt="hangman">
+
         <!-- This is where messages should appear -->
     </section>
 </main>
 <!-- <footer>
     Chas Academy - Hangman
 </footer> -->
-  <script src="hangman.js"></script>
+
 </body>
 </html>
