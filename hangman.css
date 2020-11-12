@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
 body {
-  background-color: rgb(0, 57, 83);
+  background-color: #0f380f;
 }
 
 #startGameBtn {
   text-align: center;
   margin: 10px;
-  border: rgb(43, 255, 0) solid 8px;
-  background-color: black;
-  box-shadow: rgb(25, 146, 0) 5px 5px;
-  color: rgb(43, 255, 0);
-  font-size: 50px;
+  border: #9bbc0f solid 8px;
+  background-color:  #0f380f;
+  box-shadow: #306230 5px 5px;
+  color: #9bbc0f;
+  font-size: 40px;
   font-family: 'Press Start 2P', cursive;
   margin-left: 50px;
   padding: 10px;
@@ -23,11 +23,11 @@ body {
   text-align: center;
   float: right;
   margin: 10px;
-  border: rgb(43, 255, 0) solid 8px;
-  background-color: black;
-  box-shadow: rgb(25, 146, 0) 5px 5px;
-  color: rgb(43, 255, 0);
-  font-size: 50px;
+  border: #9bbc0f solid 8px;
+  background-color:  #0f380f;
+  box-shadow: #306230 5px 5px;
+  color: #9bbc0f;
+  font-size: 40px;
   font-family: 'Press Start 2P', cursive;
   margin-left: 50px;
   padding: 10px;
@@ -36,9 +36,7 @@ body {
 }
 
 #gameBoard {
-  margin-left: 150px;
   margin-right: 150px;
-  float: left;
 }
 
 
@@ -47,19 +45,22 @@ body {
   list-style: none;
   display:flex;
   flex-wrap: wrap;
+
 }
 
 #letterBoxes {
-  list-style: armenian;
+  color: #9bbc0f;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .btn {
   font-family: 'Press Start 2P', cursive;
-  border: rgb(255, 0, 234) solid 8px;
-  background-color: black;
-  color: rgb(255, 0, 234);
-  box-shadow: rgb(119, 0, 109) 5px 5px;
-  font-size: 50px;
+  border: #9bbc0f solid 8px;
+  background-color:  #0f380f;
+  color: #9bbc0f;
+  box-shadow: #306230 5px 5px;
+  font-size: 30px;
   padding: 7px;
   margin: 10px;
 }
@@ -72,14 +73,75 @@ body {
 }
 
 .listBorder {
-  border-bottom: black solid 5px;
+  border-bottom: #9bbc0f solid 5px;
   margin: 10px;
   width: 30px;
 }
 
 #message {
   text-align: center;
-  margin: 0 auto;
+  margin-right: 150px;
+  margin-left: 150px;
   font-family: 'Press Start 2P', cursive;
+  color: #9bbc0f;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
+
+#hangman {
+  height: 320px;
+}
+
+
+@media screen and (max-width: 415px) {
+  #startGameBtn{
+    font-size: 20px;
+  }
+
+  #restartGameBtn{
+    font-size: 20px;
+    float: left;
+  }
+
+  #letterButtons {
+    margin-top: 80px;
+    text-align: center;
+    margin: -40px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+
+  #letterBoxes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .listItem {
+    font-size: 25px;
+  }
+
+  .listBorder {
+    text-align: center;
+    margin: 2px;
+  }
+
+  #message {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #hangman{
+    height: 100px;
+  }
+
+  .lose {
+    font-size: 10px;
+    margin-left: -100px;
+  }
+}
+
 

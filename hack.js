@@ -45,7 +45,7 @@ const wordList = [
   "hurl",
   "stubborn",
 ]; // Array: med spelets alla ord
-const imgList = ['Img/h0.png', 'Img/h1.png', 'Img/h2.png', 'Img/h3.png', 'Img/h4.png', 'Img/h5.png', 'Img/h6.png']
+const imgList = ['Img/h0', 'Img/PIXL/pixil-frame-0.png', 'Img/PIXL/pixil-frame-1.png', 'Img/PIXL/pixil-frame-2.png', 'Img/PIXL/pixil-frame-3.png', 'Img/PIXL/pixil-frame-4.png', 'Img/PIXL/pixil-frame-5.png', 'Img/PIXL/pixil-frame-6.png']
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0; // Number: håller antalet gissningar som gjorts
@@ -98,24 +98,32 @@ function startGame() {
       guesses++
       document.querySelector('#hangman').setAttribute('src', imgList[guesses])
 
-      if (guesses >= 6) {
-        document.querySelector('.lose').innerHTML = `YOU LOST! The word you were looking for is ${selectedWord}`;
+      if (guesses >= 7) {
+        document.querySelector('.lose').innerHTML = `YOU LOST! The word you were looking for is "${selectedWord}"`;
 
       }
       return;
     } else {
       // console.log(keyPress)
       myNodeList[indexNum].textContent = keyPress;
-      letter.target.style.backgroundColor = "green";
-      // console.log(myNodeList[indexNum].value)
+      letter.target.style.backgroundColor = "#9bbc0f";
 
+
+      // console.log(myNodeList[indexNum].value)
     const indexNum2 = selectedWord.indexOf(keyPress, indexNum + 1);
     if (indexNum2 < 0) {
+
       return;
     } else {
       myNodeList[indexNum2].textContent = keyPress;
       // console.log(indexNum2)
     }
+    if (selectedWord === indexNum) {
+      document.querySelector('.win').innerHTML = `you won`;
+      console.log(selectedWord)
+    }
+
+
 
 
   }
