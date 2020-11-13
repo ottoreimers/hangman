@@ -65,7 +65,7 @@ let msgHolderEl; // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.querySelector("#startGameBtn"); // DOM-nod: knappen som du startar spelet med
 let letterButtonEls = document.querySelectorAll(".btn"); // Array av DOM-noder: Knapparna för bokstäverna
 let letterBoxEls = document.querySelectorAll("#box"); // Array av DOM-noder: Rutorna där bokstäverna ska stå
-let guessedWord = '';
+let guessedWord = "";
 
 let counter;
 let restartGameBtn = document.querySelector("#restartGameBtn");
@@ -74,7 +74,7 @@ startGameBtnEl.addEventListener("click", startGame);
 
 restartGameBtn.addEventListener("click", () => {
   location.reload();
-  document.querySelectorAll('button').button.disable = false;
+  document.querySelectorAll("button").button.disable = false;
 });
 
 function startGame() {
@@ -89,7 +89,6 @@ function startGame() {
 
   letterButtonEls.forEach((element) => {
     element.addEventListener("click", makeTextAppear);
-
   });
 
   for (let i = 0; i < selectedWord.length; i++) {
@@ -98,14 +97,12 @@ function startGame() {
       '<input class="listBorder" type="text" disabled value=&nbsp;" />';
     document.querySelector("#letterBoxes").appendChild(liElement);
     liElement.classList.add("listItem");
-
   }
   function makeTextAppear(letter) {
     // debugger;
     const myNodeList = document.querySelectorAll(".listItem");
     let keyPress = letter.target.value.toLowerCase();
     const indexNum = selectedWord.indexOf(keyPress);
-
 
     if (indexNum < 0) {
       letter.target.style.backgroundColor = "red";
@@ -124,9 +121,11 @@ function startGame() {
       return;
     } else {
       guessedWord += keyPress;
-        if (selectedWord.length === guessedWord.length) {
-          document.querySelector('.win').innerHTML = `You guessed right! The word was "${selectedWord}"`;
-        }
+      if (selectedWord.length === guessedWord.length) {
+        document.querySelector(
+          ".win"
+        ).innerHTML = `You guessed right! The word was "${selectedWord}"`;
+      }
       // console.log(keyPress)
       myNodeList[indexNum].textContent = keyPress;
       letter.target.style.backgroundColor = "#9bbc0f";

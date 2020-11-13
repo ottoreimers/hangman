@@ -8,11 +8,11 @@ body {
   text-align: center;
   margin: 10px;
   border: #9bbc0f solid 8px;
-  background-color:  #0f380f;
+  background-color: #0f380f;
   box-shadow: #306230 5px 5px;
   color: #9bbc0f;
   font-size: 40px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   margin-left: 50px;
   padding: 10px;
   display: inline-flex;
@@ -28,30 +28,27 @@ body {
   float: right;
   margin: 10px;
   border: #9bbc0f solid 8px;
-  background-color:  #0f380f;
+  background-color: #0f380f;
   box-shadow: #306230 5px 5px;
   color: #9bbc0f;
   font-size: 40px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   margin-left: 50px;
   padding: 10px;
   display: inline-flex;
   flex-wrap: wrap;
   cursor: pointer;
-
 }
 
 #gameBoard {
   margin-right: 150px;
 }
 
-
 #letterButtons {
   text-align: center;
   list-style: none;
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
-
 }
 
 #letterBoxes {
@@ -61,23 +58,22 @@ body {
 }
 
 .btn {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   border: #9bbc0f solid 8px;
-  background-color:  #0f380f;
+  background-color: #0f380f;
   color: #9bbc0f;
   box-shadow: #306230 5px 5px;
   font-size: 30px;
   padding: 7px;
   margin: 10px;
   cursor: pointer;
-
 }
-.btn:disabled{
+.btn:disabled {
   cursor: no-drop;
 }
 
 .listItem {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 50px;
   display: inline-flex;
   justify-content: center;
@@ -93,23 +89,22 @@ body {
   text-align: center;
   margin-right: 150px;
   margin-left: 150px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   color: #9bbc0f;
   display: grid;
-  grid-template-columns: 1fr ;
+  grid-template-columns: 1fr;
 }
 
 #hangman {
   height: 320px;
 }
 
-
 @media screen and (max-width: 415px) {
   #startGameBtn {
     font-size: 20px;
   }
 
-  #restartGameBtn{
+  #restartGameBtn {
     font-size: 20px;
     float: left;
   }
@@ -147,7 +142,7 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 
-  #hangman{
+  #hangman {
     height: 100px;
   }
 
@@ -160,5 +155,3 @@ body {
     font-size: 10px;
   }
 }
-
-
