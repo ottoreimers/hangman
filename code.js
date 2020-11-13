@@ -116,6 +116,9 @@ function startGame() {
         document.querySelector(
           ".win"
         ).innerHTML = `You guessed right! The word was "${selectedWord}"`;
+        for (let button of letterButtonEls) {
+          button.disabled = true;
+        }
       }
 
       myNodeList[indexNum].textContent = keyPress;
