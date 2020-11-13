@@ -74,28 +74,34 @@ startGameBtnEl.addEventListener("click", startGame);
 
 restartGameBtn.addEventListener("click", () => {
   location.reload();
+  document.querySelectorAll('button').button.disable = false;
 });
 
 function startGame() {
+  startGameBtnEl.disabled = true;
+
   // debugger;
   // Sätta hangmanImg-variabeln till images/h0.jpg
   let selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
   // console.log(selectedWord);
 
   // console.log(selectedWord);
+
   letterButtonEls.forEach((element) => {
     element.addEventListener("click", makeTextAppear);
+
   });
+
   for (let i = 0; i < selectedWord.length; i++) {
     const liElement = document.createElement("li");
     liElement.innerHTML =
       '<input class="listBorder" type="text" disabled value=&nbsp;" />';
     document.querySelector("#letterBoxes").appendChild(liElement);
     liElement.classList.add("listItem");
+
   }
   function makeTextAppear(letter) {
     // debugger;
-
     const myNodeList = document.querySelectorAll(".listItem");
     let keyPress = letter.target.value.toLowerCase();
     const indexNum = selectedWord.indexOf(keyPress);
@@ -105,11 +111,14 @@ function startGame() {
       letter.target.style.backgroundColor = "red";
       guesses++;
       document.querySelector("#hangman").setAttribute("src", imgList[guesses]);
-
+      letter.target.disabled = true;
       if (guesses >= 7) {
         document.querySelector(
           ".lose"
         ).innerHTML = `YOU LOST! The word you were looking for is "${selectedWord}"`;
+        for (let button of letterButtonEls) {
+          button.disabled = true;
+        }
       }
 
       return;
@@ -121,7 +130,7 @@ function startGame() {
       // console.log(keyPress)
       myNodeList[indexNum].textContent = keyPress;
       letter.target.style.backgroundColor = "#9bbc0f";
-
+      letter.target.disabled = true;
       // console.log(myNodeList[indexNum].value)
       const indexNum2 = selectedWord.indexOf(keyPress, indexNum + 1);
       if (indexNum2 < 0) {
