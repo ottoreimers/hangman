@@ -125,7 +125,11 @@ function startGame() {
         document.querySelector(
           ".win"
         ).innerHTML = `You guessed right! The word was "${selectedWord}"`;
+        for (let button of letterButtonEls) {
+          button.disabled = true;
+        }
       }
+
       // console.log(keyPress)
       myNodeList[indexNum].textContent = keyPress;
       letter.target.style.backgroundColor = "#9bbc0f";
