@@ -1,5 +1,4 @@
 // Globala variabler
-// debugger;
 const wordList = [
   "jelly",
   "enhance",
@@ -55,19 +54,15 @@ const imgList = [
   "Img/PIXL/pixil-frame-5.png",
   "Img/PIXL/pixil-frame-6.png",
 ];
-// Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0; // Number: håller antalet gissningar som gjorts
-let hangmanImg; // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
-// console.log(guesses);
 
-let msgHolderEl; // DOM-nod: Ger meddelande när spelet är över
-let startGameBtnEl = document.querySelector("#startGameBtn"); // DOM-nod: knappen som du startar spelet med
-let letterButtonEls = document.querySelectorAll(".btn"); // Array av DOM-noder: Knapparna för bokstäverna
-let letterBoxEls = document.querySelectorAll("#box"); // Array av DOM-noder: Rutorna där bokstäverna ska stå
+let startGameBtnEl = document.querySelector("#startGameBtn");
+let letterButtonEls = document.querySelectorAll(".btn");
+let letterBoxEls = document.querySelectorAll("#box");
 let guessedWord = "";
 
-let counter;
+
 let restartGameBtn = document.querySelector("#restartGameBtn");
 let hangmanImgEl = document.querySelector("#hangman");
 startGameBtnEl.addEventListener("click", startGame);
@@ -80,12 +75,8 @@ restartGameBtn.addEventListener("click", () => {
 function startGame() {
   startGameBtnEl.disabled = true;
 
-  // debugger;
-  // Sätta hangmanImg-variabeln till images/h0.jpg
   let selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
-  // console.log(selectedWord);
 
-  // console.log(selectedWord);
 
   letterButtonEls.forEach((element) => {
     element.addEventListener("click", makeTextAppear);
@@ -99,7 +90,7 @@ function startGame() {
     liElement.classList.add("listItem");
   }
   function makeTextAppear(letter) {
-    // debugger;
+
     const myNodeList = document.querySelectorAll(".listItem");
     let keyPress = letter.target.value.toLowerCase();
     const indexNum = selectedWord.indexOf(keyPress);
@@ -126,17 +117,17 @@ function startGame() {
           ".win"
         ).innerHTML = `You guessed right! The word was "${selectedWord}"`;
       }
-      // console.log(keyPress)
+
       myNodeList[indexNum].textContent = keyPress;
       letter.target.style.backgroundColor = "#9bbc0f";
       letter.target.disabled = true;
-      // console.log(myNodeList[indexNum].value)
+
       const indexNum2 = selectedWord.indexOf(keyPress, indexNum + 1);
       if (indexNum2 < 0) {
         return;
       } else {
         myNodeList[indexNum2].textContent = keyPress;
-        // console.log(indexNum2)
+
       }
     }
   }
