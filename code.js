@@ -1,182 +1,135 @@
+// Globala variabler
+// debugger;
 const wordList = [
-  "Jelly",
-  "Enhance",
-  "Language",
-  "Taste",
-  "Commerce",
-  "Flower",
-  "Due",
-  "Conscience",
-  "Poem",
-  "Interference",
-  "Visible",
-  "Create",
-  "Power",
-  "Miner",
-  "Infection",
-  "Verdict",
-  "Dome",
-  "Legislation",
-  "Surprise",
-  "Heel",
-  "Reason",
-  "Absorption",
-  "Category",
-  "Announcement",
-  "Initial",
-  "Coincidence",
-  "Appointment",
-  "Sharp",
-  "Brother",
-  "Pass",
-  "Defeat",
-  "Momentum",
-  "Miscarriage",
-  "Bind",
-  "Brain",
-  "Thesis",
-  "Trap",
-  "Game",
-  "Resort",
-  "Command",
-  "Closed",
-  "Pepper",
-  "Route",
-  "Output",
-  "Invasion",
-  "Cater",
-  "Jump",
-  "Duke",
-  "Hurl",
-  "Stubborn",
-];  // Array: med spelets alla ord
-const imgList = ['Img/h0.png', 'Img/h1.png', 'Img/h2.png', 'Img/h3.png', 'Img/h4.png', 'Img/h5.png', 'Img/h6.png']
-let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
+  "jelly",
+  "enhance",
+  "language",
+  "taste",
+  "commerce",
+  "flower",
+  "due",
+  "poem",
+  "visible",
+  "create",
+  "power",
+  "miner",
+  "infection",
+  "verdict",
+  "dome",
+  "surprise",
+  "heel",
+  "reason",
+  "absorption",
+  "category",
+  "appointment",
+  "sharp",
+  "brother",
+  "pass",
+  "defeat",
+  "miscarriage",
+  "bind",
+  "brain",
+  "thesis",
+  "trap",
+  "game",
+  "resort",
+  "command",
+  "closed",
+  "pepper",
+  "route",
+  "output",
+  "invasion",
+  "cater",
+  "jump",
+  "duke",
+  "hurl",
+  "stubborn",
+]; // Array: med spelets alla ord
+const imgList = [
+  "Img/h0",
+  "Img/PIXL/pixil-frame-0.png",
+  "Img/PIXL/pixil-frame-1.png",
+  "Img/PIXL/pixil-frame-2.png",
+  "Img/PIXL/pixil-frame-3.png",
+  "Img/PIXL/pixil-frame-4.png",
+  "Img/PIXL/pixil-frame-5.png",
+  "Img/PIXL/pixil-frame-6.png",
+];
+// Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
-let guesses = 0;     // Number: håller antalet gissningar som gjorts
-let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) vid fel svar. t.ex. `/images/h1.png`
+let guesses = 0; // Number: håller antalet gissningar som gjorts
+let hangmanImg; // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
+// console.log(guesses);
 
-let msgHolderEl = document.querySelector('#message');     // DOM-nod: Ger meddelande när spelet är över
-let startGameBtnEl = document.querySelector('#startGameBtn');  // DOM-nod: knappen som du startar spelet med
-let letterButtonEls = document.querySelectorAll('#letterButtons button'); // Array av DOM-noder: Knapparna för bokstäverna
-let letterBoxEls = document.querySelectorAll('#letterBoxes ul li');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
-let letterBoxContainerEl = document.querySelector('#letterBoxes ul');
-let letterButtonContainerEl = document.querySelector('ul#letterButtons');
-let hangmanImgEl = document.querySelector('#hangman');
+let msgHolderEl; // DOM-nod: Ger meddelande när spelet är över
+let startGameBtnEl = document.querySelector("#startGameBtn"); // DOM-nod: knappen som du startar spelet med
+let letterButtonEls = document.querySelectorAll(".btn"); // Array av DOM-noder: Knapparna för bokstäverna
+let letterBoxEls = document.querySelectorAll("#box"); // Array av DOM-noder: Rutorna där bokstäverna ska stå
+let guessedWord = '';
 
-startGameBtnEl.addEventListener('click', initiateGame);
+let counter;
+let restartGameBtn = document.querySelector("#restartGameBtn");
+let hangmanImgEl = document.querySelector("#hangman");
+startGameBtnEl.addEventListener("click", startGame);
 
-letterButtonContainerEl.addEventListener('click', guessLetter);
+restartGameBtn.addEventListener("click", () => {
+  location.reload();
+});
 
-function guessLetter(e) {
-  // om användaren ej klickat på en knapp, returna
-  if (e.target.tagName !== "BUTTON") {
-    return;
+function startGame() {
+  // debugger;
+  // Sätta hangmanImg-variabeln till images/h0.jpg
+  let selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
+  // console.log(selectedWord);
+
+  // console.log(selectedWord);
+  letterButtonEls.forEach((element) => {
+    element.addEventListener("click", makeTextAppear);
+  });
+  for (let i = 0; i < selectedWord.length; i++) {
+    const liElement = document.createElement("li");
+    liElement.innerHTML =
+      '<input class="listBorder" type="text" disabled value=&nbsp;" />';
+    document.querySelector("#letterBoxes").appendChild(liElement);
+    liElement.classList.add("listItem");
   }
-  // hit kommer vi enbart om användaren tryckt på en knapp
-  // console.log(e.target.value);
-  let guessedLetter = e.target.value;
-  // öka guesses med 1
-  guesses = guesses + 1;
-  // (kolla om guesses är för högt?)
+  function makeTextAppear(letter) {
+    // debugger;
+
+    const myNodeList = document.querySelectorAll(".listItem");
+    let keyPress = letter.target.value.toLowerCase();
+    const indexNum = selectedWord.indexOf(keyPress);
 
 
-  const indexOfFirst = selectedWord.indexOf(guessedLetter);
-  // console.log(indexOfFirst)
-  if (indexOfFirst < 0) {
-    guesses = guesses + 1;
-    e.target.style.backgroundColor = "red";
-    return;
-  } else {
-    // bokstav HITTAD
-    letterBoxEls[indexOfFirst].firstElementChild.value = guessedLetter;
-    e.target.style.backgroundColor = "rgb(0, 255, 0)";
-  }
-  // om ja: sätt in tecknet i den tomma rutan som överensstämmer med
-  const indexOfSecond = selectedWord.indexOf(guessedLetter, indexOfFirst + 1);
-  // console.log(indexOfSecond)
-  if (indexOfSecond < 0) {
-    return;
-  } else {
-    // bokstav HITTAD
-    letterBoxEls[indexOfSecond].firstElementChild.value = guessedLetter;
-  }
-  // positionen i ordet
-  // om nej: gör nåt annat
-}
+    if (indexNum < 0) {
+      letter.target.style.backgroundColor = "red";
+      guesses++;
+      document.querySelector("#hangman").setAttribute("src", imgList[guesses]);
 
-// funktion som uppdaterar bilden som visas
-function setHangmanImg(index) {
+      if (guesses >= 7) {
+        document.querySelector(
+          ".lose"
+        ).innerHTML = `YOU LOST! The word you were looking for is "${selectedWord}"`;
+      }
 
-}
+      return;
+    } else {
+      guessedWord += keyPress;
+        if (selectedWord.length === guessedWord.length) {
+          document.querySelector('.win').innerHTML = `You guessed right! The word was "${selectedWord}"`;
+        }
+      // console.log(keyPress)
+      myNodeList[indexNum].textContent = keyPress;
+      letter.target.style.backgroundColor = "#9bbc0f";
 
-// Funktion som slumpar fram ett ord
-function randomWord (arr) {
-    const randomNumber = Math.floor(Math.random() * arr.length)
-    return arr[randomNumber]
-}
-// console.log(randomWord)
-
-//  skriv en funktion som rensar letterboc-rutorna, dvs tar bort dem
-function removeLb(){
-  letterBoxContainerEl.innerHTML = "";
-}
-// skriv en funktion som genererar antal tomma letterboxrutor
-function generateLb(amaount){
-  // amount = det antal rutor vi vill generera
-  for (let i = 0; i < amaount; i++){
-  let newLi = document.createElement('li');
-  newLi.innerHTML = '<input type="text" disabled value=&nbsp;" />'
-  letterBoxContainerEl.appendChild(newLi);
-  }
-  letterBoxEls = document.querySelectorAll('#letterBoxes ul li');
-}
-
-function activate () {
-
-    for (let i = 0; i < letterButtonEls.length; i++) {
-        //console.log("index: " + i)
-        //console.log("element: ");
-        //console.log(letterButtonEls[i])
-        letterButtonEls[i].disabled = false
+      // console.log(myNodeList[indexNum].value)
+      const indexNum2 = selectedWord.indexOf(keyPress, indexNum + 1);
+      if (indexNum2 < 0) {
+        return;
+      } else {
+        myNodeList[indexNum2].textContent = keyPress;
+        // console.log(indexNum2)
+      }
     }
-
+  }
 }
-function deactivate () {
-    for (let i = 0; i < letterButtonEls.length; i++) {
-        //console.log("index: " + i)
-        //console.log("element: ");
-        //console.log(letterButtonEls[i])
-        letterButtonEls[i].disabled = true
-    }
-}
-
-// Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-function initiateGame() {
-    // sätta upp spelet
-    // slumpa fram ett ord (klar)
-    // räkna längden (= antal gissningar spelaren har kvar) (klar)
-    // aktivera knappar (klar)
-    // sätta hangmanImg-variablen till images/h0.png
-
-    // sätt img-taggens src property till hangmanImg
-    // se till att antalet tomma rutor i ul:n letterBoxEls stämmer överrens med ordets längd
-    guesses = 0;
-    selectedWord = randomWord(wordList).toUpperCase();
-    let wordLength = selectedWord.length;
-    activate();
-    removeLb();
-    generateLb(wordLength);
-    console.log(selectedWord)
-}
-
-
-// Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumpas fram
-// Funktion som körs när du trycker på bokstäverna och gissar bokstav
-// Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
-
-
-// vcreate a variable and assign it element main from DOM
-
-const myvar = document.querySelector('main');
-let myButtonContainer = document.querySelector('#letterButtons')
